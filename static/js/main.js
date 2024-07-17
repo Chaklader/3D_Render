@@ -1,4 +1,4 @@
-const ROOM_INDEX = 0;
+const ROOM_INDEX = 1;
 
 const paramsForEachRoom = [
     {
