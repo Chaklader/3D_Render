@@ -70,4 +70,7 @@ $ python3 app.py
 <br>
 
 http://127.0.0.1:5015/CubeSpace/public/api/scans/viewer/9766
+
+<br>
+
 http://127.0.0.1:5015/CubeSpace/public/api/scans/viewer/10606
