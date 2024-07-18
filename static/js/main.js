@@ -1,4 +1,16 @@
-const ROOM_INDEX = 1;
+const rooms = [
+    'https://link.storjshare.io/raw/jvxxeyhejguiei247jpxmx4vluua/neuron-dev-datastore/instaplan-master/no-super-entity/entity-classvaluation-1/4869-regal-dr--bonita-springs--fl-34134--usa/no-unit/26/primary/above-grade/level-1/clones/pool/model/iteration_30000.splat',
+    'https://link.storjshare.io/raw/jvxxeyhejguiei247jpxmx4vluua/neuron-dev-datastore/instaplan-master/no-super-entity/entity-classvaluation-1/584-banyan-blvd--naples--fl-34102--usa/no-unit/26/primary/above-grade/level-1/clones/living-room/model/iteration_30000.splat',
+    'https://link.storjshare.io/raw/jvxxeyhejguiei247jpxmx4vluua/neuron-dev-datastore/instaplan-master/no-super-entity/entity-classvaluation-1/15295-burnaby-dr--naples--fl-34110--usa/no-unit/26/primary/above-grade/level-1/clones/living-room/model/iteration_30000.splat',
+    'https://link.storjshare.io/raw/jvxxeyhejguiei247jpxmx4vluua/neuron-dev-datastore/instaplan-master/no-super-entity/no-entity/26/584-banyan-blvd--naples--fl-34102--usa/no-unit/primary/above-grade/level-1/clones/garage/model/iteration_30000.splat',
+    'https://link.storjshare.io/raw/jvxxeyhejguiei247jpxmx4vluua/neuron-dev-datastore/instaplan-master/no-super-entity/no-entity/26/602-banyan-blvd--naples--fl-34102--usa/no-unit/secondary/detached-garage/above-grade/level-1/clones/room/model/iteration_30000.splat',
+    'https://link.storjshare.io/raw/jvxxeyhejguiei247jpxmx4vluua/neuron-dev-datastore/instaplan-master/no-super-entity/no-entity/26/584-banyan-blvd--naples--fl-34102--usa/no-unit/primary/above-grade/level-1/clones/club-room/model/iteration_30000.splat',
+    'https://link.storjshare.io/raw/jvxxeyhejguiei247jpxmx4vluua/neuron-dev-datastore/instaplan-master/no-super-entity/no-entity/26/584-banyan-blvd--naples--fl-34102--usa/no-unit/primary/above-grade/level-2/clones/lounge---loft/model/iteration_30000.splat',
+    'https://link.storjshare.io/raw/jvxxeyhejguiei247jpxmx4vluua/neuron-dev-datastore/instaplan-master/no-super-entity/no-entity/27/365-5th-ave-s--naples--fl-34102--usa/301/primary/above-grade/level-1/clones/livingroomnew/model/iteration_30000.splat',
+    'https://link.storjshare.io/raw/jvxxeyhejguiei247jpxmx4vluua/neuron-dev-datastore/instaplan-master/no-super-entity/no-entity/26/3396-crayton-rd--naples--fl-34103--usa/no-unit/primary/above-grade/level-1/clones/living-room/model/iteration_30000.splat',
+    'https://link.storjshare.io/raw/jvxxeyhejguiei247jpxmx4vluua/neuron-dev-datastore/instaplan-master/no-super-entity/entity-classvaluation-1/15295-burnaby-dr--naples--fl-34110--usa/no-unit/26/primary/above-grade/level-1/clones/living-room/model/iteration_30000.splat',
+];
+
 
 const paramsForEachRoom = [
     {
@@ -487,9 +499,18 @@ function updateLoadingProgress(percentComplete) {
     loadingText.textContent = `${Math.round(percentComplete)}%`;
 }
 
+// this is different impl.
+function findMatchingRoomIndex(url) {
+    const index = rooms.indexOf(url);
+    return index !== -1 ? index : 2;  // Return 2 if not found
+}
+
+
 async function loadCubeSpaceModel() {
     const url = document.getElementById("model-link").getAttribute("href");
     console.log("URL: " + url);
+
+    const ROOM_INDEX = findMatchingRoomIndex(url);
 
     const splashLoadingWrapper = document.getElementById('splash-loading-wrapper');
 
