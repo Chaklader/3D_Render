@@ -1,32 +1,28 @@
-from flask import Flask, render_template, abort
+import os
+
+from flask import Flask, render_template, abort, send_file
 
 app = Flask(__name__)
-
-
-rooms = {
-    9766: 'https://link.storjshare.io/raw/jvxxeyhejguiei247jpxmx4vluua/neuron-dev-datastore/instaplan-master/no-super-entity/entity-classvaluation-1/4869-regal-dr--bonita-springs--fl-34134--usa/no-unit/26/primary/above-grade/level-1/clones/pool/model/iteration_30000.splat',
-    10606: 'https://link.storjshare.io/raw/jvxxeyhejguiei247jpxmx4vluua/neuron-dev-datastore/instaplan-master/no-super-entity/entity-classvaluation-1/584-banyan-blvd--naples--fl-34102--usa/no-unit/26/primary/above-grade/level-1/clones/living-room/model/iteration_30000.splat'
-}
-
-def get_room_url(id):
-    if id in rooms:
-        return rooms[id]
-    else:
-        # Get the last URL (which is the second one in this case)
-        return list(rooms.values())[-1]
-
 
 @app.route('/')
 def hello():
     return "Hello World!"
 
 
+@app.route('/splat_file')
+def serve_splat_file():
+    splat_file_path = 'iteration_30000_2.splat'
+    if os.path.exists(splat_file_path):
+        return send_file(splat_file_path, mimetype='application/octet-stream')
+    else:
+        return "Splat file not found", 404
+
 @app.route('/CubeSpace/public/api/scans/viewer/<int:scan_id>')
 def index(scan_id):
     if not isinstance(scan_id, int):
         abort(400, description="Invalid scan_id. It must be an integer.")
 
-    model_link = get_room_url(scan_id)
+    model_link = 'https://link.somelink.io/iteration_30000.splat'
     address = '5521 8TH AVENUE BROOKLYN NY 11220'
     room_name = 'Room 1'
 

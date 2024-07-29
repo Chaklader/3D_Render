@@ -140,7 +140,8 @@ function eulerToQuaternion(euler) {
 let viewer = new Viewer({
     // cameraUp: [-1, 0, -0.1],
     initialCameraPosition: [27.070498222943467, 0.00312424432213776, -3.0],
-    initialCameraLookAt: [53.68, 1.6, 10],
+    // initialCameraLookAt: [53.68, 1.6, 10],
+    initialCameraLookAt: [0, 0, 0],
     sceneRevealMode: 1,
     gpuAcceleratedSort: true,
     enableSIMDInSort: true,
@@ -464,12 +465,29 @@ async function fetchWithErrorHandling(url, options) {
     return response;
 }
 
-async function fetchModelData(url) {
-    const response = await fetchWithErrorHandling(url, {
-        mode: "cors",
-        credentials: "omit",
-    });
 
+async function fetchSplatFile() {
+    try {
+        const response = await fetch('/splat_file');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        return response;
+    } catch (error) {
+        console.error('Error loading splat file:', error);
+        throw error;
+    }
+}
+
+async function fetchModelData(url) {
+    // const response = await fetchWithErrorHandling(url, {
+    //     mode: "cors",
+    //     credentials: "omit",
+    // });
+
+    const response = await fetchSplatFile();
     const reader = response.body.getReader();
     const contentLength = +response.headers.get('Content-Length');
 
@@ -510,7 +528,8 @@ async function loadCubeSpaceModel() {
     const url = document.getElementById("model-link").getAttribute("href");
     console.log("URL: " + url);
 
-    const ROOM_INDEX = findMatchingRoomIndex(url);
+    // const ROOM_INDEX = findMatchingRoomIndex(url);
+    const ROOM_INDEX = 1;
 
     const splashLoadingWrapper = document.getElementById('splash-loading-wrapper');
 
@@ -523,7 +542,7 @@ async function loadCubeSpaceModel() {
 
         await viewer.addSplatScene(objectUrl, {
             splatAlphaRemovalThreshold: 20,
-            showLoadingUI: true,
+            showLoadingUI: false,
             position: [30, 0, 0],
             rotation: [
                 fixedNewRotation.w,

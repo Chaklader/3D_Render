@@ -2,6 +2,9 @@
 
 # SETUP
 
+- Install LFS `git lfs install` 
+- Clone the repo and run `git lfs pull` to receive the Splat file 
+
 <br>
 
 ### Install Pyenv
@@ -69,8 +72,4 @@ $ python3 app.py
 
 <br>
 
-http://127.0.0.1:5015/CubeSpace/public/api/scans/viewer/9766
-
-<br>
-
-http://127.0.0.1:5015/CubeSpace/public/api/scans/viewer/10606
+http://127.0.0.1:5015/CubeSpace/public/api/scans/viewer/1000

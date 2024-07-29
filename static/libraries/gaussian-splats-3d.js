@@ -14015,9 +14015,9 @@ all copies or substantial portions of the Software.
 
             this.setupCamera();
             this.setupRenderer();
-            this.setupWebXR();
-            this.setupControls();
-            this.setupEventHandlers();
+            // this.setupWebXR();
+            // this.setupControls();
+            // this.setupEventHandlers();
 
             this.threeScene = this.threeScene || new THREE.Scene();
             this.sceneHelper = new SceneHelper(this.threeScene);
