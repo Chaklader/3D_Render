@@ -80,12 +80,12 @@ const rooms = [
 
 <br>
 
-http://127.0.0.1:5015/CubeSpace/public/api/scans/viewer/9766
+http://127.0.0.1:5015/myapp/public/api/scans/viewer/9766
 
 <br>
 
-http://127.0.0.1:5015/CubeSpace/public/api/scans/viewer/10606
+http://127.0.0.1:5015/myapp/public/api/scans/viewer/10606
 
 <br>
 
-http://127.0.0.1:5015/CubeSpace/public/api/scans/viewer/10184
+http://127.0.0.1:5015/myapp/public/api/scans/viewer/10184

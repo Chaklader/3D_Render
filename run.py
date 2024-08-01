@@ -17,7 +17,7 @@ def hello():
 #     else:
 #         return "Splat file not found", 404
 
-@app.route('/CubeSpace/public/api/scans/viewer/<int:scan_id>')
+@app.route('/myapp/public/api/scans/viewer/<int:scan_id>')
 def index(scan_id):
     if not isinstance(scan_id, int):
         abort(400, description="Invalid scan_id. It must be an integer.")
